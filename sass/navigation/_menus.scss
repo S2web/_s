@@ -1,10 +1,17 @@
-
+.nav-toggle {
+  position:relative;
+  z-index:999;
+}
 
 .nav {
 	clear:both;
 	position: relative;
-	width:100%;
-	background: #4d4d4d;
+	z-index: 1;
+
+	width:300px;
+	height:100%;
+
+	@include transition (all 0.5s ease-in-out);
 
 	ul {
 		margin: 0;
@@ -13,55 +20,105 @@
 	}
 
 	li {
-		
+		width: 100%;
+		display: block;
+		float:left;
+
 		a {
 			display: block;
-			padding: 1em 1.2em;
+			padding: 1em;
 			text-decoration: none;
 			outline:none;
-			&:hover {
-				background: lighten(#4d4d4d,10);
-				opacity:1;
-			}
 		}
 	}
 
 	.sub-menu, .children {
-		position: absolute;
-		top: 100%;
-		display: none;
-		
-		float: left;
-		min-width: 12.5em;
-		//margin-top: 0.5em;
-		margin-left: 0;
+
+		li {
+			position:relative;
+			&:before {
+				content: '-';
+				position: absolute;
+				left: 1em;
+				top: 1em;
+			}
+			a {
+				padding-left:2em;
+				width: 100%;
+			}
+			
+		} // end list element
+	}
+
+} // end nav
+
+.menu-wrap {
+	background-color:#eee;
+}
+
+.js {
+
+	.site-container {
+		position:relative;
+		z-index:99;
+		@include transition (transform 0.5s ease-in-out);
+	}
+
+	.nav-reveal {
+		overflow: hidden;
 		text-align: left;
-		
-		background: lighten(#4d4d4d,10);
-		z-index: 1000;
-		
-		ul, ol {
-			margin-left: 0;
-			list-style: none;
+		//visibility: hidden;
+		opacity:0;
+		position:fixed;
+		/*  CSS3 animation for when menu content expands */
+		@include transition (all 0.5s ease-in-out);
+	}
+
+	.reveal {
+
+		.nav-reveal {
+			visibility: visible;
+			opacity:1;
+		}
+		.site-container {
+			@include transform( translateX( 300px ) );
+		}
+		#overlay, #overlay-header {
+			position:absolute;
+			width: 100%;
+			height: 100%;
+			opacity: 1;
+			z-index: 100;
+			// box-shadow: 10px 0 20px -13px #000;
+			// -webkit-box-shadow: 10px 0 20px -13px #000;
+			@include transition ( opacity 0.5s );
+		}
+	}
+
+	.menu-wrap {
+		box-sizing:border-box;
+	}
+}
+
+/**
+ * Modernizer check for CSS transforms
+ * Legacy support for browsers that don't support transforms
+ */
+.no-csstransforms3d {
+
+	.reveal {
+
+		.nav-reveal {
+			z-index:9999;
+		}
+		#overlay {
+			@include legacy-opacity(1);
 		}
 
-		&.active {
-			display: block;
-			visibility: visible;
+		.nav-toggle {
+			margin-right:320px;
 		}
 	}
 }
-/*  Sets dropdown link to relative positioning */
-
-.menu-item-has-children {
-	position: relative;
-}
-
-/*  Display a caret after each dropdown link when JavaScript is supported.
- *  You can remove this or change it to a different symbol.
- *  (For example, a "+" symbol.) */
-
-
-
 
 

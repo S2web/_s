@@ -23,16 +23,25 @@
 <body <?php body_class(); ?> itemscope="itemscope" itemtype="http://schema.org/WebPage">
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', '_s2' ); ?></a>
+	<?php 
+		/**
+		 * Retrieve the main navigation
+		 */
+		get_template_part( 'templates/main', 'navigation' );
+	?>
+	<div class="site-container">
+		<div id="overlay" aria-hidden="true"></div>
+		
+		<!-- Site Header -->
+		<header id="masthead" class="site-header" role="banner" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+			<div class="site-branding">
+				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+			</div>
+			<button id="menu-btn" class="nav-toggle" href="#"><?php _e( 'Menu', 'premierresearch' ); ?></button>
+			
+		</header><!-- #masthead -->
 
-	<!-- Site Header -->
-	<header id="masthead" class="site-header" role="banner" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
-		<div class="site-branding">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-		</div>
-
-		<?php get_template_part( 'templates/main', 'navigation' ); ?>
-	</header><!-- #masthead -->
-
-	<!-- Site Content -->
-	<div id="content" class="site-content">
+		<!-- Site Content -->
+		<div id="content" class="site-content">
+		

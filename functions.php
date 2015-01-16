@@ -100,6 +100,8 @@ add_action( 'widgets_init', '_s2_widgets_init' );
 function _s2_scripts() {
 	wp_enqueue_style( '_s2-style', get_stylesheet_uri() );
 
+	wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/js/modernizr.custom.js', array(), '2.8.3', false );
+
 	wp_enqueue_script( '_s2-scripts', get_template_directory_uri() . '/js/main.js', array(), '20120206', true );
 
 	// Load comments script for single pages only
